@@ -1,0 +1,22 @@
+{
+  "name": "f2gpl",
+  "version": "1.0.0",
+  "description": "将方法调用转成Graphql查询语句，像调方法一样调用Graphql接口",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "graphql"
+  ],
+  "author": "folgerfan",
+  "license": "ISC",
+  "devDependencies": {
+    "graphql": "^0.13.2",
+    "mocha": "^5.2.0"
+  },
+  "dependencies": {}
+}
