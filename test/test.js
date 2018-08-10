@@ -61,6 +61,44 @@ let root = {
 
 
 describe('F2Gql test', function () {
+    describe('使用', function () {
+        it('创建对象的参数只能是query、mutation中的一种', function () {
+            let queryParse = new F2Gql('query');
+            assert.equal(typeof queryParse, 'object');
+            let mutationParse = new F2Gql('query');
+            assert.equal(typeof mutationParse, 'object');
+            try {
+                new F2Gql('other');
+                assert.equal(1, 2);
+            } catch (e) {
+                assert.equal(e.message, 'type must be query or mutation')
+            }
+        });
+
+        it('方法调用中参数值只能是基本类型', function () {
+            let queryParse = new F2Gql('query');
+            try {
+                queryParse.getUser({user: {name: 'folger'}}).parse();
+                assert.equal(1, 2);
+            } catch (e) {
+                assert.equal(e.message, 'only support basic type')
+            }
+        });
+
+        it('调parse前不能使用原型链的方法', function () {
+            Object.prototype.objFunc = function () {
+            };
+            let queryParse = new F2Gql('query');
+            let err;
+            try {
+                queryParse.getUser({id: 1}).objFunc({name: 'folger'}).parse();
+            } catch (e) {
+                err = e;
+            }
+            assert.equal(!!err, true)
+        })
+    });
+
     describe('查询', function () {
         describe('基本返回类型', function () {
             it('无参数,查询结果相同', async function () {
@@ -112,7 +150,7 @@ describe('F2Gql test', function () {
             });
         });
 
-        it('多接口查询',async function(){
+        it('多接口查询', async function () {
             let queryParse = new F2Gql('query');
             let [r1, r2] = await Promise.all([graphql(schema, `{ 
             queryWithNoArgAndObjectResult{name,age}
@@ -188,7 +226,7 @@ describe('F2Gql test', function () {
             });
         });
 
-        it('多接口变更',async function(){
+        it('多接口变更', async function () {
             let queryParse = new F2Gql('mutation');
             let [r1, r2] = await Promise.all([graphql(schema, `{ 
             addWithNoArgAndObjectResult{name,age}
