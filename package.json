@@ -1,5 +1,5 @@
 {
-  "name": "f2gpl",
+  "name": "f2gql",
   "version": "1.0.0",
   "description": "将方法调用转成Graphql查询语句，像调方法一样调用Graphql接口",
   "main": "index.js",
