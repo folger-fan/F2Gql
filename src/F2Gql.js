@@ -34,7 +34,7 @@ F2Gpl.prototype.parse = function () {
                 }
                 let value = params[key];
                 if(typeof value === 'object'){
-                    throw new Error('只支持基本类型参数')
+                    throw new Error('only support basic type')
                 }
                 if (typeof value === 'string') {
                     paramsArr.push(`${key}:"${value}"`)
