@@ -18,5 +18,13 @@
     "graphql": "^0.13.2",
     "mocha": "^5.2.0"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/folger-fan/F2Gql.git"
+  },
+  "bugs": {
+    "url": "https://github.com/folger-fan/F2Gql/issues"
+  },
+  "homepage": "https://github.com/folger-fan/F2Gql#readme"
 }
